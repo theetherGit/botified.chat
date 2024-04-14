@@ -8,13 +8,13 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		interface Platform {
-			AI: Fetcher
-			BOTIFIED_KV: KVNamespace
-			PRIMARY_DB: D1Database
-			CHAT_DB: D1Database
-			BOTIFIED_VECTOR: VectorizeIndex
-			PUBLIC_BUCKET: R2Bucket
-			PRIVATE_BUCKET: R2Bucket
+			AI: Fetcher;
+			BOTIFIED_KV: KVNamespace;
+			PRIMARY_DB: D1Database;
+			CHAT_DB: D1Database;
+			BOTIFIED_VECTOR: VectorizeIndex;
+			PUBLIC_BUCKET: R2Bucket;
+			PRIVATE_BUCKET: R2Bucket;
 		}
 	}
 }

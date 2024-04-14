@@ -1,5 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
+import { initDB } from '$lib/server/db';
 
 export const handle: Handle = async ({ event, resolve }) => {
-    return resolve(event);
+	await initDB(event.platform?.PRIMARY_DB as D1Database);
+	return resolve(event);
 };
