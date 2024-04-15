@@ -51,18 +51,18 @@
             </div>
 
             <div class="hidden lg:flex lg:ml-16 lg:items-center lg:justify-center lg:space-x-10 xl:space-x-16">
-                <a href="#" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Features </a>
+                <a href="#" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded hover:text-opacity-50 focus:ring-0 focus:ring-transparent"> Features </a>
 
-                <a href="#" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Pricing </a>
+                <a href="#" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded hover:text-opacity-50 focus:ring-0 focus:ring-transparent"> Pricing </a>
             </div>
 
             <div class="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
-                <a href="#" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Sign Up </a>
+                <a href="/register" title="" class="text-base font-medium text-secondary-foreground transition-all duration-200 rounded focus:ring-0 focus:ring-transparent hover:text-opacity-50"> Sign Up </a>
 
                 <a
-                        href="#"
+                        href="/login"
                         title=""
-                        class="inline-flex items-center justify-center px-4 py-2 text-base font-bold leading-7 text-foreground transition-all duration-200 bg-primary border border-primary rounded-xl hover:bg-transparent hover:text-primary font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/90"
+                        class="inline-flex items-center justify-center px-4 py-2 text-base font-bold leading-7 text-foreground transition-all duration-200 bg-primary border border-primary rounded-xl hover:bg-transparent hover:text-primary font-pj focus:outline-none focus:ring-2 focus:ring-primary/90"
                         role="button"
                 >
                     Login
@@ -70,34 +70,32 @@
                 </a>
             </div>
         </div>
-<!--        <div class="container">-->
-            {#if expanded}
-                <nav transition:slide
-                     class="w-full {expanded ? 'z-10 block bg-opacity-90 backdrop-blur pr-7' : ''} fixed">
-                    <div class="px-1 py-8">
-                        <div class="grid gap-y-7">
-                            <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Features </a>
+        {#if expanded}
+            <nav transition:slide
+                 class="w-full {expanded ? 'z-10 block bg-opacity-90 backdrop-blur pr-7' : ''} fixed">
+                <div class="px-1 py-8">
+                    <div class="grid gap-y-7">
+                        <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Features </a>
 
-                            <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Pricing </a>
+                        <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Pricing </a>
 
 
-                            <a href="/register" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Sign Up </a>
+                        <a href="/register" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Sign Up </a>
 
-                            <a
-                                    href="/login"
-                                    title=""
-                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-bold leading-7 text-primary-foreground bg-primary transition-all duration-200 border border-primary rounded-xl hover:bg-transparent hover:text-primary font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-primary"
-                                    role="button"
-                            >
-                                Login
-                                <ArrowRight class="ml-1"/>
-                            </a>
-                        </div>
+                        <a
+                                href="/login"
+                                title=""
+                                class="inline-flex items-center justify-center px-4 py-2 text-base font-bold leading-7 text-primary-foreground bg-primary transition-all duration-200 border border-primary rounded-xl hover:bg-transparent hover:text-primary font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-primary"
+                                role="button"
+                        >
+                            Login
+                            <ArrowRight class="ml-1"/>
+                        </a>
                     </div>
-                </nav>
-            {/if}
+                </div>
+            </nav>
+        {/if}
         </div>
-<!--    </div>-->
 </header>
 
 <style>
