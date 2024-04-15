@@ -1,4 +1,5 @@
 export type ChatbotConfig = {
+	name?: string
 	icon: string;
 	preconfiguredQuestions: string;
 	headerColor: string;
@@ -6,4 +7,5 @@ export type ChatbotConfig = {
 	conversationBgColor: string;
 	conversationTextColor: string;
 	welcomeMessage: string;
+	job: string
 };

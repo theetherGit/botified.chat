@@ -4,7 +4,7 @@
 	import EmptyBoard from "$lib/components/secure/create-chatbot-board.svelte"
 	export let data: PageServerData
 </script>
-<div class="flex items-center"><h1 class="text-lg font-semibold md:text-2xl">Dashboard</h1></div>
+<div class="flex items-center"><h1 class="text-lg font-semibold md:text-2xl">Chatbots</h1></div>
 {#if data.chatbotList}
 	<ScrollArea class="flex flex-1 rounded-md border ">
 		<div class="flex flex-col h-full w-full">

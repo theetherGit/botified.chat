@@ -2,9 +2,9 @@
 	import 'root-styles';
 	import SideNav from '$lib/components/secure/side-nav.svelte';
 	import Header from '$lib/components/secure/header.svelte';
-	import { ScrollArea } from "$lib/components/ui/scroll-area";
+	import { Toaster } from "$lib/components/ui/sonner";
 </script>
-
+<Toaster />
 <div
 	class="relative flex min-h-screen flex-col bg-background"
 	id="page"

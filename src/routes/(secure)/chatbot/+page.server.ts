@@ -1,5 +1,5 @@
 export const load = async () => {
     return {
-        chatbotList: true
+        chatbotList: false
     }
 }

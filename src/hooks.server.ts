@@ -6,21 +6,19 @@ import { DASHBOARD_ROUTE } from '$lib/utils/const';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	// Retrieve the session ID from the browser's cookies
-	const sessionId = null;
-	// const sessionId = event.cookies.get(luciaManager.sessionCookieName);
+	const sessionId = event.cookies.get(luciaManager.sessionCookieName);
 	// If there's no session ID, set both user and session to null and resolve the request
+	const db = await initDB(event.platform?.env.PRIMARY_DB as D1Database);
+	updateAdapterWithManagerAtRT(db);
+
 	if (!sessionId) {
 		event.locals.user = null;
 		event.locals.session = null;
 		return resolve(event);
 	}
 
-	const db = await initDB(event.platform?.env.PRIMARY_DB as D1Database);
-	updateAdapterWithManagerAtRT(db);
-
 	// Attempt to validate the session using the retrieved session ID
 	const { session, user } = await luciaManager.validateSession(sessionId);
-
 	// If the session is newly created (due to session expiration extension), generate a new session cookie
 	if (session?.fresh) {
 		const sessionCookie = luciaManager.createSessionCookie(session.id);
