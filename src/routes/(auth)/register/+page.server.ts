@@ -5,12 +5,12 @@ import { db } from '$lib/server/db';
 import { eq } from 'drizzle-orm';
 import { users } from '$lib/server/db/schema';
 import { generateId } from 'lucia';
-import { Argon2id } from 'oslo/password';
 import { insertNewUser } from '$lib/server/db/utils';
 import { createAndSetSession } from '$lib/server/auth/utils';
 import { luciaManager } from '$lib/server/auth/lucia.manager';
 import { redirect } from '@sveltejs/kit';
 import { DASHBOARD_ROUTE } from '$lib/utils/const';
+import { generateHashWithScrypt } from '$lib/server/auth/scrypt';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -41,7 +41,7 @@ export const actions: Actions = {
 			}
 
 			const userId = generateId(15);
-			const hashedPassword = await new Argon2id().hash(signupForm.data.password);
+			const hashedPassword = await generateHashWithScrypt(signupForm.data.password);
 
 			await insertNewUser({
 				id: userId,

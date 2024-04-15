@@ -4,11 +4,11 @@ import type { Actions, PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
-import { Argon2id } from 'oslo/password';
 import { luciaManager } from '$lib/server/auth/lucia.manager';
 import { createAndSetSession } from '$lib/server/auth/utils';
 import { redirect } from '@sveltejs/kit';
 import { DASHBOARD_ROUTE } from '$lib/utils/const';
+import { validateScryptHash } from '$lib/server/auth/scrypt';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -40,10 +40,7 @@ export const actions: Actions = {
 			return setError(loginForm, 'email', 'Email is not registered.');
 		}
 
-		const validPassword = await new Argon2id().verify(
-			existingUser.password,
-			loginForm.data.password
-		);
+		const validPassword = await validateScryptHash(loginForm.data.password, existingUser.password);
 
 		if (!validPassword) {
 			return setError(loginForm, 'password', 'Incorrect password.');
