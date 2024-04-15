@@ -1,8 +1,12 @@
 <script lang="ts">
     import Logo from "$lib/assets/logo.svg"
-    import {MoveRight} from "lucide-svelte";
     import ArrowRight from "lucide-svelte/icons/arrow-right";
+    import {onNavigate} from "$app/navigation";
+    import {slide} from "svelte/transition";
     let expanded = false
+    onNavigate(() => {
+        if (expanded) expanded = false
+    })
 </script>
 
 <header class="py-4 md:py-6">
@@ -66,30 +70,34 @@
                 </a>
             </div>
         </div>
+<!--        <div class="container">-->
+            {#if expanded}
+                <nav transition:slide
+                     class="w-full {expanded ? 'z-10 block bg-opacity-90 backdrop-blur pr-7' : ''} fixed">
+                    <div class="px-1 py-8">
+                        <div class="grid gap-y-7">
+                            <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Features </a>
 
-<!--        <nav>-->
-<!--            <div class="px-1 py-8">-->
-<!--                <div class="grid gap-y-7">-->
-<!--                    <a href="#" title="" class="flex items-center p-3 -m-3 text-base font-medium text-primary transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Features </a>-->
+                            <a href="/" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Pricing </a>
 
-<!--                    <a href="#" title="" class="flex items-center p-3 -m-3 text-base font-medium text-primary transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Pricing </a>-->
 
-<!--                    <a href="#" title="" class="flex items-center p-3 -m-3 text-base font-medium text-primary transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Automation </a>-->
+                            <a href="/register" title="" class="flex items-center p-3 -m-3 text-base font-medium text-secondary-foreground transition-all duration-200 rounded-xl hover:bg-secondary focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Sign Up </a>
 
-<!--                    <a href="#" title="" class="flex items-center p-3 -m-3 text-base font-medium text-primary transition-all duration-200 rounded-xl hover:bg-gray-50 focus:outline-none font-pj focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"> Customer Login </a>-->
-
-<!--                    <a-->
-<!--                            href="#"-->
-<!--                            title=""-->
-<!--                            class="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-xl hover:bg-gray-600 font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"-->
-<!--                            role="button"-->
-<!--                    >-->
-<!--                        Sign up-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </nav>-->
-    </div>
+                            <a
+                                    href="/login"
+                                    title=""
+                                    class="inline-flex items-center justify-center px-4 py-2 text-base font-bold leading-7 text-primary-foreground bg-primary transition-all duration-200 border border-primary rounded-xl hover:bg-transparent hover:text-primary font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-primary"
+                                    role="button"
+                            >
+                                Login
+                                <ArrowRight class="ml-1"/>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            {/if}
+        </div>
+<!--    </div>-->
 </header>
 
 <style>
