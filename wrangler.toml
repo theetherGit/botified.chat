@@ -4,89 +4,71 @@ name = "botified-chat"
 main = "./.cloudflare/worker.js"
 site.bucket = "./.cloudflare/public"
 
-build.command="pnpm run build"
+build.command = "pnpm run build"
 
 compatibility_date = "2024-04-05"
-compatibility_flags = [ "nodejs_compat" ]
+compatibility_flags = ["nodejs_compat"]
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#workers-ai
- [ai]
- binding = "AI"
+[ai]
+binding = "AI"
 
-# Bind a D1 database. D1 is Cloudflare’s native serverless SQL database.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#d1-databases
- d1_databases = [
-  { binding = "PRIMARY_DB", database_name = "botified-dev-db", database_id = "3762caf8-10f8-48ca-9b2d-aff37700c6fc" },
-  { binding = "CHAT_DB", database_name = "botified-dev-chat-db", database_id = "97df7213-e09f-4275-9d03-6a7c01587b70" }
- ]
+[[d1_databases]]
+binding = "PRIMARY_DB"
+database_name = "botified-dev-db"
+database_id = "3762caf8-10f8-48ca-9b2d-aff37700c6fc"
 
-# Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#kv-namespaces
- kv_namespaces = [
-  { binding = "BOTIFIED_KV", id = "5010f95929224d02969b4dac3af16b99" },
- ]
+[[d1_databases]]
+binding = "CHAT_DB"
+database_name = "botified-dev-chat-db"
+database_id = "97df7213-e09f-4275-9d03-6a7c01587b70"
 
- # Bind a Vectorize index. Use to store and query vector embeddings for semantic search, classification and other vector search use-cases.
- # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#vectorize-indexes
- vectorize  = [
-  { binding = "BOTIFIED_VECTOR", index_name = "botified-vector-db-dev"}
- ]
+[[kv_namespaces]]
+binding = "BOTIFIED_KV"
+id = "997e8726cb0c483cacc98ac0a50fe850"
+preview_id = "997e8726cb0c483cacc98ac0a50fe850"
 
-# Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
-# Note: Use secrets to store sensitive data.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
-# [vars]
-# MY_VARIABLE = "production_value"
+[[vectorize]]
+binding = "BOTIFIED_VECTOR"
+index_name = "botified-vector-db-dev"
 
-# Bind an Analytics Engine dataset. Use Analytics Engine to write analytics within your Pages Function.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#analytics-engine-datasets
-# [[analytics_engine_datasets]]
-# binding = "MY_DATASET"
+[[r2_buckets]]
+binding = "PRIVATE_BUCKET"
+bucket_name = "botified-chat-private-dev"
+preview_bucket_name = "preview-botified-chat-private-dev"
 
-# Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
-# [[queues.producers]]
-# binding = "MY_QUEUE"
-# queue = "my-queue"
+[[r2_buckets]]
+binding = "PUBLIC_BUCKET"
+bucket_name = "botified-chat-public-dev"
+preview_bucket_name = "preview-botified-chat-public-dev"
 
-# Bind a Queue consumer. Queue Consumers can retrieve tasks scheduled by Producers to act on them.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
-# [[queues.consumers]]
-# queue = "my-queue"
-# Optional: Configure batching and retries: https://developers.cloudflare.com/queues/learning/batching-retries/
-# max_batch_size = 10
-# max_batch_timeout = 30
-# max_retries = 10
-# dead_letter_queue = "my-queue-dlq"
 
-# Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#r2-buckets
-# [[r2_buckets]]
-# binding = "MY_BUCKET"
-# bucket_name = "my-bucket"
-
-# Bind another Worker service. Use this binding to call another Worker without network overhead.
-# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
-# [[services]]
-# binding = "MY_SERVICE"
-# service = "my-service"
-
- # Bind a Durable Object. Durable objects are a scale-to-zero compute primitive based on the actor model.
- # Durable Objects can live for as long as needed. Use these when you need a long-running "server", such as in realtime apps.
- # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#durable-objects
- # [[durable_objects.bindings]]
- # name = "MY_DURABLE_OBJECT"
- # class_name = "MyDurableObject"
-
- # Durable Object migrations.
- # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#migrations
- # [[migrations]]
- # tag = "v1"
- # new_classes = ["MyDurableObject"]
-
- # Bind a Hyperdrive configuration. Use to accelerate access to your existing databases from Cloudflare Workers.
- # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#hyperdrive
- # [[hyperdrive]]
- # binding = "MY_HYPERDRIVE"
- # id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#[env.prod]
+#name = "botified-chat"
+#
+#[[r2_buckets]]
+#binding = "PRIVATE_BUCKET"
+#bucket_name = "botified-chat-private-dev"
+#
+#[[r2_buckets]]
+#binding = "PUBLIC_BUCKET"
+#bucket_name = "botified-chat-public-dev"
+#
+#[[kv_namespaces]]
+#binding = "BOTIFIED_KV"
+#id = "5010f95929224d02969b4dac3af16b99"
+#
+#[[vectorize]]
+#binding = "BOTIFIED_VECTOR"
+#index_name = "botified-vector-db-dev"
+#
+#[[d1_databases]]
+#binding = "PRIMARY_DB"
+#database_name = "botified-dev-db"
+#database_id = "3762caf8-10f8-48ca-9b2d-aff37700c6fc"
+#
+#[[d1_databases]]
+#binding = "CHAT_DB"
+#database_name = "botified-dev-chat-db"
+#database_id = "97df7213-e09f-4275-9d03-6a7c01587b70"
